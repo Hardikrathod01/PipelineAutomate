@@ -1,0 +1,25 @@
+folder('folder-a') {
+    description('Folder containing all jobs for folder-a')
+}
+job('folder-a/job-a') {
+  steps{
+    batchFile('echo hi')
+  }
+}
+job('folder-a/job-b'){
+  
+	scm {
+      git{
+      remote{
+      	name('origin')
+        url('https://github.com/skeeto/sample-java-project.git')
+        credentials('2aa6dd9f-7455-4113-9780-870df0ff01b4')
+    }
+   }
+    }
+  steps{
+     batchFile('echo scm checkout completed \n set http_proxy=http://ciplatform:Infy1234+@10.74.91.103:80 \n set https_proxy=http://ciplatform:Infy1234+@10.74.91.103:80')
+  }
+  
+  
+}

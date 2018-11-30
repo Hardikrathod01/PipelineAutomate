@@ -1,0 +1,23 @@
+@Library('cummins-library')
+import org.foo.BuildStage
+
+BuildStage buildStage = new BuildStage(this)
+    stage('Basic Info') {
+        
+		echo 'Status: Initiation of pipeline: Accepted'
+		echo 'Pipeline Name: '
+		echo 'printing workspace '
+	}
+    
+    stage('SCM checkout'){
+       buildStage.buildStageExecution()
+    }
+    stage('Build job'){
+        buildStage.deployStageExecution()
+    }
+
+
+
+
+
+    
