@@ -1,7 +1,9 @@
 @Library('cummins-library')
 import org.foo.BuildStage
+import org.foo.FlowDockUtil
 
 BuildStage buildStage = new BuildStage(this)
+FlowDockUtil flowDock = new FlowDockUtil(this)
     stage('Basic Info') {
         
 		echo 'Status: Initiation of pipeline: Accepted'
@@ -14,6 +16,10 @@ BuildStage buildStage = new BuildStage(this)
     }
     stage('Build job'){
         buildStage.deployStageExecution()
+		echo 'sending message to flowdock thread'
+		flowDock.flowDockMessage()
+		echo 'message sent to flowdock thread'
+		
     }
 
 
