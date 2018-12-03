@@ -3,26 +3,33 @@ import org.foo.BuildStage
 import org.foo.FlowDockUtil
 
 BuildStage buildStage = new BuildStage(this)
-FlowDockUtil flowDock = new FlowDockUtil(this)
-    stage('Basic Info') {
+   node('master') {
+   // Will run on the slave with name or tag master
+    stage('Basic Info'){
+    	echo 'Status: Initiation of pipeline: Accepted'
+    }
+    stage('SCM Checkout') {
         
-		echo 'Status: Initiation of pipeline: Accepted'
-		echo 'Pipeline Name: '
-		echo 'printing workspace '
+		echo 'SCM checkout started
+		buildStage.scmStageExecution()
+		echo 'SCM checkout finished'
 	}
     
-    stage('SCM checkout'){
+    stage('Build'){
+       echo 'Build job execution started'
        buildStage.buildStageExecution()
+       echo 'Build job execution finished'
+       
     }
-    stage('Build job'){
+    stage('Deploy'){
+        echo 'Deploy job execution started'
         buildStage.deployStageExecution()
-		echo 'sending message to flowdock thread'
-		flowDock.flowDockMessage()
-		echo 'message sent to flowdock thread'
+	echo 'Deploy job execution finished'
+
 		
     }
 
-
+}
 
 
 
