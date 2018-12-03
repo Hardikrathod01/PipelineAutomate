@@ -10,7 +10,7 @@ BuildStage buildStage = new BuildStage(this)
     }
     stage('SCM Checkout') {
         
-		echo 'SCM checkout started
+		echo 'SCM checkout started'
 		buildStage.scmStageExecution()
 		echo 'SCM checkout finished'
 	}
