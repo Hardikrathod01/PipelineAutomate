@@ -1,12 +1,7 @@
-folder('folder-a') {
-    description('Folder containing all jobs for folder-a')
+folder('Stage-pipeline') {
+    description('Folder containing all jobs for Stage-pipeline')
 }
-job('folder-a/job-a') {
-  steps{
-    batchFile('echo hi')
-  }
-}
-job('folder-a/job-b'){
+job('Stage-pipeline/SCM-checkout'){
   
 	scm {
       git{
@@ -16,10 +11,20 @@ job('folder-a/job-b'){
         credentials('2aa6dd9f-7455-4113-9780-870df0ff01b4')
     }
    }
-    }
-  steps{
-     batchFile('echo scm checkout completed \n set http_proxy=http://ciplatform:Infy1234+@10.74.91.103:80 \n set https_proxy=http://ciplatform:Infy1234+@10.74.91.103:80')
-  }
+   }
   
   
+}
+
+job('Stage-pipeline/Build'){
+	steps {
+        batchFile('echo Hello World!') //batch command for build job excution
+	msBuild {
+            msBuildInstallation('Default')
+            buildFile('dir1/build.proj') // Msbuild file path, path of solution file
+            args('/P:DeployOnBuild=true')
+            continueOnBuildFailure(false)
+        }
+        }
+	
 }
