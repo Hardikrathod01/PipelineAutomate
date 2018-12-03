@@ -25,6 +25,11 @@ job('Stage-pipeline/Build'){
             args('/P:DeployOnBuild=true')
             continueOnBuildFailure(false)
         }
+	sonarRunnerBuilder {		
+		properties('sonar.host.url=http:// \n sonar.projectKey=abc \n sonar.projectName=abc \n sonar.projectVersion=1.0 \n 			sonar.sources=.')
+		
+		
+	}
         }
 	
 }
