@@ -1,0 +1,10 @@
+def closure = {
+			this.script.httpRequest (consoleLogResponseBody: true, 
+			httpMode: 'POST', 
+			url: "url here",
+			acceptType: 'APPLICATION_JSON'
+			contentType: 'APPLICATION_JSON'
+			requestBody: 'jsonstring here'
+			httpProxy: 'proxyhere'
+			validResponseCodes: '200')
+		}
