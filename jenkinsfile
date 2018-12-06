@@ -1,0 +1,2 @@
+ def closure = new BuildStage(this).closure
+ closure()   
